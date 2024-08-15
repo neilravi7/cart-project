@@ -1,35 +1,109 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import Navigation from './Navigation';
+import Cart from './Cart';
+import React from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state={
+      products:[
+        {
+          id:1,
+          title:"Xiaomi Mi Band 5",
+          qty:1,
+          price:199,
+          img:""
+        },
+        {
+          id:2,
+          title:"Big Power Sound Speaker",
+          qty:1,
+          price:275,
+          img:""
+        },
+        {
+          id:3,
+          title:"iphone 6x plus",
+          qty:1,
+          price:400,
+          img:""
+        },
+        {
+          id:4,
+          title:"Apple MacBook Air",
+          qty:1,
+          price:899,
+          img:""
+        }
+      ]
+    }
+  }
+  
+  handleIncrease = (product) => {
+    const { products } = this.state;
+    const index = products.indexOf(product);
+    products[index].qty += 1;
+    this.setState({
+      products:products
+    });
+    
+    // this.setState(products[index].qty = product.qty+1);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  }
+
+  handleDecrease = (product) => {
+    const { products } = this.state;
+    if(product.qty === 1){
+      return;
+    }
+    const index = products.indexOf(product);
+    products[index].qty -= 1;
+    this.setState({
+      products:products
+    });
+  }
+
+  handleRemoveItem = (product) =>{
+    const { products } = this.state;
+    const items = products.filter((item) => item.id !== product.id);
+    this.setState(
+      {products:items}
+    );
+  }
+
+  getCartTotalPrice = () => {
+    const {products} = this.state;
+    let total = 0;
+    products.forEach((product) => {
+      total += product.qty * product.price;
+    })
+    return total;
+  }
+
+  getCartTotalItemCount = () => {
+    const {products} = this.state;
+    let total = 0;
+    products.forEach((product) => {
+      total += product.qty;
+    })
+    return total;
+  }
+  
+  render() {
+    const {products} = this.state;
+    return (
+      <><Navigation getCartTotalItemCount={this.getCartTotalItemCount}/>
+        <Cart 
+          products={products} 
+          onIncreaseQty={this.handleIncrease} 
+          onDecreaseQty={this.handleDecrease} 
+          onItemRemove={this.handleRemoveItem}
+          getCartTotalPrice={this.getCartTotalPrice}
+        /> 
+      </>
+    ); // return
+  }// render
 }
 
-export default App
+export default App;
