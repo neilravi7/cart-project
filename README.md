@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/26a5a723-6893-4a66-94fc-488a5a4026ea)# Cart Project
+# Cart Project
 
 Its an simple react web application
 
