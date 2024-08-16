@@ -5,7 +5,8 @@ const CartItem = (props) => {
         item,
         onIncreaseQty,
         onDecreaseQty,
-        onItemRemove
+        onItemRemove,
+        itemColor
     } = props;
 
     const styles = {
@@ -14,38 +15,39 @@ const CartItem = (props) => {
             height: 150,
         }
     }
+
     return (
         <>
-            <div className="card mb-3">
+            <div className={`card mb-1 rounded border-0 ${itemColor}`}>
                 <div className="row no-gutters">
-                    <div style={styles.productImage} className="col-md-5">
-                        <img src={item.img} alt="product" />
+                    <div  className="col-md-5">
+                        <img src={item.img} className="rounded" style={styles.productImage} alt="product" height={200} />
                     </div>
                     <div className="col-md-6">
                         <div className="card-body">
                             <h5 className="card-title">{item.title}</h5>
                             <p className="card-text">
-                                <b className="text-muted">Price: {item.price}</b>
+                                <b className="text-muted">Price: ${item.price}</b>
                             </p>
                             <p className="card-text">
                                 <b className="text-muted">Quantity: {item.qty}</b>
                             </p>
-                            <p className="card-text">
-                                <span>
+                            <p className="">
+                                <span className="px-2">
                                     <IoRemoveCircle
                                         size={25}
                                         color="red"
                                         onClick={() => onDecreaseQty(item)}
                                     />
                                 </span>
-                                <span>
+                                <span className="px-2">
                                     <IoAddCircle 
                                         size={25} 
                                         color="green" 
                                         onClick={() => onIncreaseQty(item)}
                                     /> 
                                 </span>
-                                <span>
+                                <span className="px-2">
                                     <IoCloseCircle 
                                     size={25} 
                                     color="red" 

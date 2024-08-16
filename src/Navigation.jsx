@@ -11,7 +11,7 @@ const Navigation = (props) => {
     const {getCartTotalItemCount} = props;
     return (
         <>
-            <Navbar expand="lg" className="bg-body-tertiary mb-3">
+            <Navbar expand="lg" className="bg-warning bg-gradient mb-3 ">
                 <Container>
                     <Navbar.Brand href="#home">Cart-Project</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
