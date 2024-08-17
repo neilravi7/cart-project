@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 import Navbar from "react-bootstrap/Navbar";
 
 const Cart = (props) => {
-    console.log("Cart", props);
     const {
         products,
         onIncreaseQty,
@@ -13,12 +12,26 @@ const Cart = (props) => {
         getCartTotalPrice
     } = props;
 
-    const color = ["bg-primary-subtle", "bg-success-subtle", "bg-warning-subtle", "bg-info-subtle", 'bg-light-subtle'];
+    const colorIndex = Math.floor(Math.random() * (5 - 1 + 1)) + 1
+
+    const color = [
+        "bg-primary-subtle", 
+        "bg-success-subtle", 
+        "bg-warning-subtle", 
+        "bg-info-subtle", 
+        'bg-light-subtle',
+        "bg-primary-subtle bg-gradient", 
+        "bg-success-subtle bg-gradient", 
+        "bg-warning-subtle bg-gradient", 
+        "bg-info-subtle bg-gradient", 
+        'bg-light-subtle bg-gradient',
+    ];
+
     return (
         <>
             <Container className="bg-white">
                 <Row className="g-2 justify-content-center">
-                    <Col md={10}>
+                    <Col md={7}>
                         {products.map((item, index) => (
                             <CartItem
                                 item={item}
@@ -30,16 +43,17 @@ const Cart = (props) => {
                             />
                         ))}
                     </Col>
-                    <Navbar sticky="bottom" className="bg-warning bg-gradient rounded-pill w-25 bg-opacity-75">
-                        <Card.Body>
-                            <Card.Title >Cart Total </Card.Title>
-                            <Card.Text className="fs-5">
-                                $<span className="text-dark">{getCartTotalPrice()}</span>
-                            </Card.Text>
-                        </Card.Body>
-                    </Navbar>
+                    <Col md={3}>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title >Cart Total </Card.Title>
+                                <Card.Text className="fs-5">
+                                    $<span className="text-dark">{getCartTotalPrice()}</span>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 </Row>
-
             </Container>
         </>
     );

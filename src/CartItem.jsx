@@ -9,19 +9,12 @@ const CartItem = (props) => {
         itemColor
     } = props;
 
-    const styles = {
-        productImage: {
-            backgroundColor: "#F6F6F3",
-            height: 150,
-        }
-    }
-
     return (
         <>
-            <div className={`card mb-1 rounded border-0 ${itemColor}`}>
+            <div className={` card p-0 m-0 mb-1 rounded border-0 ${itemColor}`}>
                 <div className="row no-gutters">
-                    <div  className="col-md-5">
-                        <img src={item.img} className="rounded" style={styles.productImage} alt="product" height={200} />
+                    <div  className="col-md-4">
+                        <img src={item.img} className="rounded mt-2"  alt="product" height={170} />
                     </div>
                     <div className="col-md-6">
                         <div className="card-body">

@@ -8,7 +8,7 @@ import { IoCartOutline } from "react-icons/io5";
 
 
 const Navigation = (props) => {
-    const {getCartTotalItemCount} = props;
+    const {getCartTotalItemCount, addNewProduct} = props;
     return (
         <>
             <Navbar expand="lg" className="bg-warning bg-gradient mb-3 ">
@@ -19,6 +19,11 @@ const Navigation = (props) => {
                         <Nav className="me-auto">
                             <Nav.Link href="#home"></Nav.Link>
                             <Nav.Link href="#link"></Nav.Link>
+                            <Nav.Item>
+                                <Button variant="dark" onClick={() => addNewProduct()}>
+                                    Add Product
+                                </Button>
+                            </Nav.Item>
                             <Nav.Item>
                                 <Button variant="">
                                     <IoCartOutline size={40} /> <Badge bg="dark">{getCartTotalItemCount()}</Badge>
